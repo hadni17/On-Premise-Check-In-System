@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+<script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap" rel="stylesheet">
+    <title>Paksi Cantik</title>
+    <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <section class="w-4/5 mx-auto pt-20 pb-40 bg-contain bg-bottom" style="background-color: #EAEAEA; background-image: url('assets/bg.png'); "> 
+                <div class="flex items-center">
+                    <div class="pl-10"><span class="iconify text-4xl" data-icon="bi:arrow-left-short"></span></div>
+                    <h1 class="text-3xl font-semibold" style="font-family: 'Montserrat', sans-serif;">QR Scan</h1>
+                </div> 
+                    <div class="card relative w-3/4 p-6 mt-5 border rounded-xl bg-white mx-auto">
+                            <video id="preview" class="rounded-xl" width="100%" ></video>
+                            <div id="qr-shaded-region" class="flex rounded-xl" style="position: absolute;margin: 15px 15px 39px 15px; border-width: 45px 135px; border-style: solid; border-color: rgba(0, 0, 0, 0.48); box-sizing: border-box; inset: 0px;">
+                                <!-- <div style="position: absolute;border-radius: 10px; background-color: #0C0014; width: 40px; height: 5px; top: -6px; left: -5px;"></div>
+                                <div style="position: absolute;border-radius: 10px; background-color: #0C0014; width: 40px; height: 5px; top: -6px; right: -5px;"> </div>
+                                <div style="position: absolute;border-radius: 10px; background-color: #0C0014; width: 40px; height: 5px; top: 220px; left: -5px;"> </div>
+                                <div style="position: absolute;border-radius: 10px; background-color: #0C0014; width: 40px; height: 5px; top: 220px; right: -5px;"></div>
+                                <div style="position: absolute;border-radius: 10px; background-color: #0C0014; width: 5px; height: 45px; top: -6px; left: -6px;"></div>
+                                <div style="position: absolute;border-radius: 10px; background-color: #0C0014; width: 5px; height: 45px; top: 180px; left: -6px;"></div>
+                                <div style="position: absolute;border-radius: 10px; background-color: #0C0014; width: 5px; height: 45px; top: -6px; right: -6px;"> </div>
+                                <div style="position: absolute;border-radius: 10px; background-color: #0C0014; width: 5px; height: 45px; top: 180px; right: -6px;"> </div> -->
+                            </div>
+                            <p class="mt-3" style="font-family:'Lora', serif;text-align: center;font-size: 11px;">arahkan QR kedalam kotak.</p>
+                    </div>
+                
+                    <div class="p-6 mt-5">
+                        <div class="bg-white flex w-3/4 items-center rounded-xl shadow-xl mx-auto">
+                            <input class="rounded-xl w-full py-1 px-6 text-gray-700 leading-tight focus:outline-none" id="text" type="text" placeholder="Search Your Participant ID">
+                          <div class="p-4">
+                            <button class="text-white rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 flex items-center justify-center">
+                                <img src="assets/search.png">
+                            </button>
+                           </div>
+                        </div>
+                    </div>
+            </section>
+    </div>
+                
+        <script>
+           let scanner = new Instascan.Scanner({ video: document.getElementById('preview')});
+           Instascan.Camera.getCameras().then(function(cameras){
+               if(cameras.length > 0 ){
+                   scanner.start(cameras[0]);
+               } else{
+                   alert('No cameras found');
+
+               }
+
+           }).catch(function(e) {
+               console.error(e);
+           });
+
+           scanner.addListener('scan',function(c){
+               document.getElementById('text').value=c;
+               
+           });
+        </script>
+    </body>
+</html>
