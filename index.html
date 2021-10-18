@@ -27,7 +27,7 @@
                 <!-- head -->
                 <div class="flex items-center">
                     <div class="pl-10"><span class="iconify text-4xl" data-icon="bi:arrow-left-short"></span></div>
-                    <h1 class="text-3xl font-semibold" style="font-family: 'Montserrat', sans-serif;">QR Scan</h1>
+                    <h1 class="text-3xl mx-auto font-semibold" style="font-family: 'Montserrat', sans-serif;">QR Scan</h1>
                 </div> 
                 <!-- qr scan -->
                     <div class="card relative w-3/4 p-6 mt-5 border rounded-xl bg-white mx-auto">
@@ -50,7 +50,7 @@
                     </div>
 
                     <!-- search bar  -->
-                    <div class="p-6 mt-5">
+                    <div class="p-6 mt-2">
                         <div class="bg-white flex w-3/4 items-center rounded-xl shadow-xl mx-auto">
                             <input class="rounded-xl w-full py-1 px-6 text-gray-700 leading-tight focus:outline-none" id="text" type="text" placeholder="Search Your Participant ID">
                           <div class="p-4">
@@ -68,7 +68,7 @@
            let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),scanPeriod: 5});
            scanner.addListener('scan',function(content){
                alert(content);
-               // window.location.href=content;
+            //    window.location.href=content;
             });
            Instascan.Camera.getCameras().then(function(cameras){
                if(cameras.length > 0 ){
@@ -97,10 +97,7 @@
 
            scanner.addListener('scan',function(c){
                document.getElementById('text').value=c;
-               
            });
         </script>
-
-
     </body>
 </html>
