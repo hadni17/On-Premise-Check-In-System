@@ -8,254 +8,34 @@
     <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body style="background-color: #EAEAEA;">
   <main class="w-full">
-    <section class="w-4/5 mx-auto pb-40 bg-contain bg-bottom" style="background-color: #EAEAEA; background-image: url('assets/bg.png'); "> 
-        <span class="iconify text-5xl" data-icon="bi:arrow-left-short"></span>
-        <h1 class="text-center font-bold md:text-4xl text-base">Participant Dashboard</h1>
+    <section class="w-full mx-auto pt-20 pb-40 bg-contain bg-bottom" style="background-image: url('assets/bg.png'); "> 
 
-        <div class="overflow-x-scroll	bg-white w-11/12 mx-auto rounded-xl mt-10 py-4">
-              <table class="md:text-xl text-base table-auto w-full border-solid divide-y divide-black" >
-                  <thead>
-                  <tr >
-                      <th>No</th>
+        <!--ICONIFY BACK-->
+        <div class="flex items-center">
+          <a href="Landpage.html" class="pl-5">
+            <span class="iconify text-5xl" data-icon="bi:arrow-left-short"></span>
+          </a>
+          <h1 class="text-3xl mx-auto font-semibold" style="font-family: 'Montserrat', sans-serif;">Participant</h1>
+        </div>
+
+        <!--CARD-->
+        <div class="bg-gray-50 w-11/12 mx-auto rounded-xl mt-10 pt-2">
+
+              <div class="overflow-auto h-screen">
+
+                <!--TABLE-->
+                <table class="md:text-xl text-base table-auto w-full divide-black" >
+                  <thead  class="sticky -top-0.5 ">
+                  <tr>
+                    <th>Id Participant</th>
                       <th>Nama</th>
-                      <th>Id tiket</th>
-                      <th>Jns. Peserta</th>
-                      <th >Status</th>
                       <th>Action</th>
                   </tr>
-                  </thead>
-                  <tbody id="participant" class="text-center">
-                      <!-- <tr>
-                          <td>3</td>
-                          <td>Alvin Simbolon</td>
-                          <td>D188302X</td>
-                          <td>Public</td>
-                          <td>Uncheck</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr class="bg-gray-100">
-                          <td>4</td>
-                          <td>Anggun Ayu L</td>
-                          <td>D120495F</td>
-                          <td>Public</td>
-                          <td>Check-In</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>5</td>
-                          <td>Arafat Maku</td>
-                          <td>D212129S</td>
-                          <td>Public</td>
-                          <td>Checkout</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr class="bg-gray-100">
-                          <td>6</td>
-                          <td>Ari Sukarizo</td>
-                          <td>D212129S</td>
-                          <td>Guest</td>
-                          <td>Uncheck</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>7</td>
-                          <td>Arnoud Sarayar</td>
-                          <td>D129304S</td>
-                          <td>Public</td>
-                          <td>Uncheck</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr class="bg-gray-100">
-                          <td>8</td>
-                          <td>Bela Kartika</td>
-                          <td>D102934D</td>
-                          <td>Public</td>
-                          <td>Checkout</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>9</td>
-                          <td>Bongson Pane</td>
-                          <td>D188302X</td>
-                          <td>Media</td>
-                          <td>Uncheck</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr class="bg-gray-100">
-                          <td>10</td>
-                          <td>Edwina Christy</td>
-                          <td>D120495F</td>
-                          <td>Public</td>
-                          <td>Check-In</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>11</td>
-                          <td>Fika Febrika</td>
-                          <td>D212129S</td>
-                          <td>Public</td>
-                          <td>Checkout</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr class="bg-gray-100">
-                          <td>12</td>
-                          <td>Frumentius D</td>
-                          <td>D212129S</td>
-                          <td>Media</td>
-                          <td>Uncheck</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>13</td>
-                          <td>Indah P. Larasati</td>
-                          <td>D129304S</td>
-                          <td>Guest</td>
-                          <td>Checkout</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr class="bg-gray-100">
-                          <td>14</td>
-                          <td>Jerome Polen</td>
-                          <td>D102934D</td>
-                          <td>Guest</td>
-                          <td>Check-In</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>15</td>
-                          <td>Mina Rafid</td>
-                          <td>D188302X</td>
-                          <td>Public</td>
-                          <td>Checkout</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr> -->
-                      <!-- <tr class="bg-gray-100">
-                          <td>16</td>
-                          <td>Muhammad Sultan</td>
-                          <td>D120495F</td>
-                          <td>Public</td>
-                          <td>Uncheck</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>17</td>
-                          <td>Nabillah Adani</td>
-                          <td>D212129S</td>
-                          <td>Media</td>
-                          <td>Checkout</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr class="bg-gray-100">
-                          <td>18</td>
-                          <td>Novia Samosir</td>
-                          <td>D212129S</td>
-                          <td>Public</td>
-                          <td>Uncheck</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>19</td>
-                          <td>Shelzi Grayxena</td>
-                          <td>D129304S</td>
-                          <td>Public</td>
-                          <td>Checkout</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr>
-                      <tr class="bg-gray-100">
-                          <td>20</td>
-                          <td>Tamia Indah I</td>
-                          <td>D102934D</td>
-                          <td>Media</td>
-                          <td>Uncheck</td>
-                          <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                          </td>
-                      </tr> -->
+                </thead>
+                  <tbody id="customer" class="text-center "></tbody>
               </table>
-              <div class="my-10 flex items-center justify-between">
-                <h2 class="ml-10">
-                  1 - 20 of 100
-                </h2>
-                <h2 class="inline-flex mr-10">
-                  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
-                    <span class="iconify" data-icon="bx:bxs-left-arrow"></span>
-                  </button>
-                  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
-                    <span class="iconify" data-icon="bx:bxs-right-arrow"></span>
-                  </button>
-                </h2>
               </div>
         </div>
       </section>
@@ -263,41 +43,35 @@
 </body>
 </html>
 
-<script>
+<script >
   async function getData(url){
-    const response = await fetch(url);
-    
-    // untuk extract data
-    const { data }=await response.json();
 
-    return data;
+  const response = await fetch(url);
+  const {data} =  await response.json();
+  return data;
+
   };
 
-  getData('http://192.168.18.85:8055/items/participant').then(result =>{
-    // console.log(result);
-  
-    const elementHtml = document.querySelector('#participant');
-    let nomor =1 ;
+   //get API
+   getData('http://192.168.18.82:8055/items/customer').then(result => {
 
-    const test =(data) => `
-          <tr>
-                    <td>${nomor++}</td>
-                    <td>${data.name}</td>
-                    <td>${data.ticket_type}</td>
-                    <td>${data.part_type}</td>
-                    <td>Checkout</td>
-                    <td>
-                            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-                                Detail
-                            </button>
-                    </td>
-                   </tr>
-    `
+    const elementHtml = document.querySelector('#customer');
+      const elementCustomer = data =>`
+      <tr class="bg-gray-100">
+        <td>${data.customer_id}</td>
+        <td>${data.customer_name}</td>
+        <td>
+          <a href="participantdashboard.html">
+            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+              Detail
+            </button>
+          </a>
+        </td>
+      </tr>
+      `;
 
-
-    result.map(data => {
-      console.log(data);
-      elementHtml.innerHTML+=test(data);
-    })
-  });
+     result.map(data => {
+      elementHtml.innerHTML += elementCustomer(data);
+     });
+   })
 </script>
