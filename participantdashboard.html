@@ -10,28 +10,28 @@
 </head>
 <body style="background-color: #EAEAEA;">
     <main class="w-full">
-        <section class="w-full mx-auto pt-10 pb-40 bg-contain bg-bottom" style="background-image: url('assets/bg.png'); ">
+        <section class="w-full mx-auto pt-10 pb-40bg-contain bg-bottom" style="background-image: url('assets/bg.png');">
 
-            <!--ICONIFY BACK-->
+            <!--ICONIFY-->
             <div class="flex items-center">
-                <a href="Dashboard Participant.html" class="pl-5">
-                    <span class="iconify text-4xl" data-icon="bi:arrow-left-short"></span>
+                <a href="activesession.html">
+                    <span href="#" class="iconify text-4xl" data-icon="bi:arrow-left-short"></span>
                 </a>
-                <h1 class="mx-auto" style="font-size: 30px;"><b>Participant Detail</b></h1>
+                <h1 class="mx-auto" style="font-size: 35px;"><b>Check-In</b></h1>
             </div>
 
             <!--CARD-->
-            <div class="box-border w-10/12 h-5/6 bg-white mx-auto rounded-lg mt-10 mb-10">
+            <div class="box-border w-10/12 bg-white mx-auto rounded-lg mt-10 mb-10 pb-5">
                 <div class="flex items-center justify-between px-5 border-b-2 border-dashed">
                     <div>
                         <p class="text-gray-400 pt-4 font-medium text-xs">PARTICIPANT NAME</p>
-                        <p class="font-bold  text-xl">Agung Saepudin</p>
+                        <p class="font-bold  text-xl">Indah P. Larasati</p>
                     </div>
 
-                    <!--NOTIFY UNCHECK-->
-                    <div class="w-1/4 py-1 rounded-sm text-white text-center mt-6 text-xs" style="background: #9B9B9B;">Uncheck</div>
+                    <!--NOTIFY CHECKED-->
+                    <div class="w-1/4 py-1 rounded-sm text-white text-center mt-6 text-xs" style="background: #39A852;">Checked</div>
                 </div>
-
+                <!--GRID-->
                 <div class="grid grid-cols-2 px-5">
 
                     <!--LEFT-->
@@ -52,7 +52,7 @@
                         <!--HISTORY-->
                         <div>
                             <p class="text-gray-400 pt-4 font-medium text-xs">HISTORY</p>
-                            <div class="font-bold text-md">
+                            <div class="font-bold text-md pb-6">
                                 <p>07 Okt - 08.30</p>
                                 <p>07 Okt - 10.30</p>
                                 <p>07 Okt - 13.30</p>
@@ -112,8 +112,10 @@
                     <!--RIGHT CLOSE-->
                 </div>
                 <!--GRID CLOSE-->
+
+                <!--BUTTON SUBMIT-->
+                <a href="scan.html" type="button" class="flex justify-center bg-blue-400 w-4/5 mx-auto py-1 rounded-md">Submit</a>
             </div>
-            <!--CARD CLOSE-->
         </section>
     </main>
 </body>
