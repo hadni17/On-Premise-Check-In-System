@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novia</title>
+    <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #EAEAEA;">
+  <main class="w-full">
+    <section class="w-full mx-auto pt-10 pb-40 bg-contain bg-bottom" style="background-image: url('assets/bg.png'); "> 
+
+        <!--ICONIFY BACK-->
+        <div class="flex items-center">
+          <a href="Landpage.html" class="pl-5">
+            <span class="iconify text-5xl" data-icon="bi:arrow-left-short"></span>
+          </a>
+          <h1 class="text-3xl mx-auto font-semibold" style="font-family: 'Montserrat', sans-serif;">Participant</h1>
+        </div>
+
+        <!--SEARCH BAR-->
+        <div class="mt-2">
+          <div class="bg-white flex w-11/12 items-center rounded-xl shadow-xl mx-auto">
+              <input class="rounded-xl w-full py-3 px-6 text-gray-700 leading-tight focus:outline-none" id="text" type="text" placeholder="Participant ID/Link">
+
+            <!--ICONIFY FILTER-->
+            <div class="filter md:filter-none px-4">
+              <a href="#">
+               <span class="iconify" data-icon="bi:filter-circle-fill"></span>
+              </a>
+            </div>
+
+              <!--ICONIFY SEARCH-->
+            <div class="">
+              <a href="DashPart_Detail.html">
+                <span class="iconify" data-icon="akar-icons:search"></span>
+              </a>
+            </div>
+
+            <!--ICONIFY QR CODE-->
+            <div class="px-2">
+              <a href="DashPart_Scan.html">
+                <span class="iconify" data-icon="ic:outline-qr-code-scanner"></span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <!--CARD-->
+        <div class="bg-gray-50 w-11/12 mx-auto rounded-xl mt-10 pt-2">
+
+              <div class="overflow-auto h-screen">
+
+                <!--TABLE-->
+                <table class="md:text-xl text-base table-auto w-full " >
+                  <thead  class="sticky -top-0.5 bg-gray-50">
+                  <tr>
+                      <th>Nama</th>
+                      <th>Id tiket</th>
+                      <th>Action</th>
+                  </tr>
+                  </thead>
+                  
+                  <tbody id="participant" class="text-center">
+                      <!-- <tr>
+                        <td>Agung Saepudin</td>
+                        <td>D1293045</td>
+                        <td>
+                          <a href="participantdashboard.html">
+                            <button href="participantdashboard.html" class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                              Detail
+                          </button>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr class="bg-gray-100">
+                          <td>Ahmad Syauqi D</td>
+                          <td>D102934D</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>Alvin Simbolon</td>
+                          <td>D188302X</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr class="bg-gray-100">
+                          <td>Anggun Ayu L</td>
+                          <td>D120495F</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>Arafat Maku</td>
+                          <td>D212129S</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr class="bg-gray-100">
+                          <td>Ari Sukarizo</td>
+                          <td>D212129S</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>Arnoud Sarayar</td>
+                          <td>D129304S</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr class="bg-gray-100">
+                          <td>Bela Kartika</td>
+                          <td>D102934D</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>Bongson Pane</td>
+                          <td>D188302X</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr class="bg-gray-100">
+                          <td>Edwina Christy</td>
+                          <td>D120495F</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>Fika Febrika</td>
+                          <td>D212129S</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr class="bg-gray-100">
+                          <td>Frumentius D</td>
+                          <td>D212129S</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>Indah P. Larasati</td>
+                          <td>D129304S</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr class="bg-gray-100">
+                          <td>Jerome Polen</td>
+                          <td>D102934D</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>Mina Rafid</td>
+                          <td>D188302X</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr class="bg-gray-100">
+                          <td>Muhammad Sultan</td>
+                          <td>D120495F</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>Nabillah Adani</td>
+                          <td>D212129S</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr class="bg-gray-100">
+                          <td>Novia Samosir</td>
+                          <td>D212129S</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>Shelzi Grayxena</td>
+                          <td>D129304S</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr>
+                      <tr class="bg-gray-100">
+                          <td>Tamia Indah I</td>
+                          <td>D102934D</td>
+                          <td>
+                            <a href="participantdashboard.html">
+                              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+                                Detail
+                            </button>
+                            </a>
+                          </td>
+                      </tr> -->
+                    </tbody>
+              </table>
+              </div>
+              <!--OVERFLOW CLOSE-->
+              
+              <!-- <div class="my-10 flex items-center justify-between">
+                <a href="#" class="pl-10">
+                  <span class="iconify" data-icon="bx:bxs-left-arrow"></span>
+                </a>
+                <h2 class="mx-auto">
+                  1 - 20 of 100
+                </h2>
+                  <a href="#" class="pr-10">
+                    <span class="iconify" data-icon="bx:bxs-right-arrow"></span>
+                  </button>
+              </div> -->
+        </div>
+        <!--CARD CLOSE-->
+      </section>
+    </main>
+</body>
+</html>
+
+<script async>
+   async function getData(url){
+     const response = await fetch(url);
+
+     const { data } = await response.json()
+
+     console.log(data)
+
+     return data;
+
+     //console.log( await response.json());
+   };
+
+   //get API
+   getData('http://192.168.18.85:8055/items/participant').then(result => {
+     //console.log(result);
+
+     const elementHtml = document.querySelector('#participant');
+      let nomor = 1;
+
+      const elementParticipant = data =>`
+        <tr>
+          <td>${ data.name}</td>
+          <td>Uncheck</td>
+          <td>
+          <a href="participantdashboard.html">
+            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+            Detail
+          </button>
+          </a>
+          </td>
+        </tr>`
+        ;
+
+     result.map(data => {
+      elementHtml.innerHTML += elementParticipant(data);
+     });
+   })
+</script>
