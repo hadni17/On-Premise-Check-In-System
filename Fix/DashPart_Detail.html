@@ -40,13 +40,16 @@
 
                         <div id="ticket"></div>
 
-                        <div id="session"></div>
+                        <div id="session">
+                            <p class="text-gray-400 pt-4 font-medium text-xs">HISTORY</p>
+                        </div>
                         
                     </div>
                     <div>
 
                         <!--CHECK-IN-->
                         <div id="registration">
+                            <p class="text-gray-400 pt-4 font-medium text-xs">CHECK-IN TIME</p>
                         </div>
                         <!--MERCHANDISE-->
                         <div id="merch">
@@ -74,7 +77,7 @@
 
     };
 
-    getData('http://192.168.18.82:8055/items/order?fields=customer_id.customer_id,customer_id.customer_name,ticket_id.ticket_id,ticket_id.ticket_type&filter[customer_id]=2').then(result =>{
+    getData('http://192.168.18.80:8055/items/order?fields=customer_id.customer_id,customer_id.customer_name,ticket_id.ticket_id,ticket_id.ticket_type&filter[customer_id]=2').then(result =>{
         
         const elementName = document.querySelector('#customer');
         const customerName =(data) =>`
@@ -98,45 +101,28 @@
     });
     })
 
-    async function getDataSession(url){
-        const response = await fetch(url);
-        const {data} =  await response.json();
-        return data;
-
-    };
-    getDataSession('http://192.168.18.82:8055/items/session').then(result =>{
-
-        const elementHtml = document.querySelector('#session');
-        const session =(data) =>`
-        <p class="text-gray-400 pt-4 font-medium text-xs">HISTORY</p>
-        <div class="font-bold text-md pb-6">
-            <p>${data.start_time}</p>
-        </div>
-        `;
-
-    result.map(data=>{
-        elementHtml.innerHTML = session(data);
-    });
-    })
-
-
     async function getDataRegistration(url){
         const response = await fetch(url);
         const {data} =  await response.json();
         return data;
 
     };
-    getDataRegistration('http://192.168.18.85:8055/items/registration').then(result =>{
+    getDataRegistration('http://192.168.18.68:8055/items/registration?filter[id_participant]=2').then(result =>{
 
-        const elementHtml = document.querySelector('#registration');
-        const registration =(data) =>`
-            <p class="text-gray-400 pt-4 font-medium text-xs">CHECK-IN TIME</p>
-            <p class="font-bold text-md">${data.validated_on}</p>
+        const elementHtml = document.querySelector('#session');
+        const session =(data) =>`
+        <div class="font-bold text-md pb-6">
+            <p>${data.id_session}</p>
+        </div>
         `;
-
-    result.map(data=>{
-        elementHtml.innerHTML = registration(data);
-    });
+        const validatedOn = document.querySelector('#registration');
+        const registration =(data) =>`
+            <p class="font-bold text-md">${data.validated_on}</p>
+         `;
+        result.map(data=>{
+           elementHtml.innerHTML += session(data);
+           validatedOn.innerHTML += registration(data);
+        });
     })
 
     async function getDataMerch(url){
@@ -145,20 +131,23 @@
         return data;
 
     };
-    getDataRegistration('http://192.168.18.76:8055/items/merch').then(result =>{
-
-        const elementHtml = document.querySelector('#merch');
-        const merchandise =(data) =>`
-            <div>
-                <div class="form-check">
-                    <label class="form-check-label pl-2 font-bold text-md" for="flexCheckDefault">${data.nama_merch}</label>
-                </div>
+    getDataRegistration('http://192.168.18.83:8055/items/peserta_x_merch_eligible?fields=id_peserta_x_merch,id_merch_eligible.id_merch.nama_merch&filter[id_peserta_x_merch]=2').then(result =>{
+        // console.log(result.id_merch_eligible)
+        result.map(data=>{
+            // console.log(data.id_merch_eligible.id_merch.nama_merch)
+        
+            const elementHtml = document.querySelector('#merch');
+            const merchandise =(data) =>`
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label pl-2 font-bold text-md" for="flexCheckDefault">
+                        ${data.id_merch_eligible.id_merch.nama_merch}
+                    </label>
             </div>
-        `;
+            `;
 
-    result.map(data=>{
-    elementHtml.innerHTML += merchandise(data);
-    });
+            elementHtml.innerHTML += merchandise(data);
+        });
     })
 
 </script>
