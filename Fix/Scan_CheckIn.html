@@ -23,9 +23,8 @@
             <!--CARD-->
             <div class="box-border w-10/12 bg-white mx-auto rounded-lg mt-10 mb-10 pb-5">
                 <div class="flex items-center justify-between px-5 border-b-2 border-dashed">
-                    <div>
+                    <div id="customer">
                         <p class="text-gray-400 pt-4 font-medium text-xs">PARTICIPANT NAME</p>
-                        <p class="font-bold  text-xl">Indah P. Larasati</p>
                     </div>
 
                     <!--NOTIFY CHECKED-->
@@ -36,127 +35,27 @@
 
                     <!--LEFT-->
                     <div>
+                        <div id="participant"></div>
 
-                        <!--ID-->
-                        <div>
-                            <p class="text-gray-400 pt-4 font-medium text-xs">ID</p>
-                            <p class="font-bold text-md">D109201S</p>
-                        </div>
+                        <div id="ticket"></div>
 
-                        <!--TICKET TYPE-->
-                        <div>
-                            <p class="text-gray-400 pt-4 font-medium text-xs">TICKET TYPE</p>
-                            <p class="font-bold text-md">Day 1-3</p>
-                        </div>
-
-                        <!--HISTORY-->
-                        <!-- <div>
+                        <div id="session">
                             <p class="text-gray-400 pt-4 font-medium text-xs">HISTORY</p>
-                            <div class="font-bold text-md pb-6">
-                                <p>07 Okt - 08.30</p>
-                                <p>07 Okt - 10.30</p>
-                                <p>07 Okt - 13.30</p>
-                                <p>07 Okt - 14.30</p>
-                                <p>08 Okt - 08.30</p>
-                                <p>08 Okt - 13.30</p>
-                                <p>09 Okt - 08.30</p>
-                                <p>09 Okt - 13.30</p>
-                                <p>09 Okt - 18.30</p>
-                            </div>
-                        </div> -->
+                        </div>
                         
                     </div>
-                    <!--LEFT CLOSE-->
-
-                    <!--RIGHT-->
                     <div>
 
                         <!--CHECK-IN-->
-                        <div>
+                        <div id="registration">
                             <p class="text-gray-400 pt-4 font-medium text-xs">CHECK-IN TIME</p>
-                            <p class="font-bold text-md">08.30</p>
                         </div>
-
-                        <!--PARTICIPANT TYPE-->
-                        <!-- <div>
-                            <p class="text-gray-400 pt-4 font-medium text-xs">PARTICIPANT TYPE</p>
-                            <p class="font-bold text-md italic">Public</p>
-                        </div> -->
-
                         <!--MERCHANDISE-->
-                        <!-- <div>
+                        <div id="merch">
                             <p class="text-gray-400 pt-4 font-medium text-xs">MERCHANDISE</p>
-                            <div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label pl-2 font-bold text-md" for="flexCheckDefault">
-                                      Package
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label pl-2 font-bold text-md" for="flexCheckDefault">
-                                      Co-Card
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label pl-2 font-bold text-md" for="flexCheckDefault">
-                                      Certificate
-                                    </label>
-                                </div>
-                            </div>
-                        </div> -->
+                        </div>
                         <!--MERCHANDISE CLOSE-->
                     </div>
-                    <!--RIGHT CLOSE-->
-                </div>
-                <!--GRID CLOSE-->
-
-                <!--GRID2-->
-                <div class="grid grid-cols-2 px-5">
-                    <!--HISTORY-->
-                    <div>
-                        <p class="text-gray-400 pt-4 font-medium text-xs">HISTORY</p>
-                        <div class="font-bold text-md pb-6">
-                            <p>07 Okt - 08.30</p>
-                            <p>07 Okt - 10.30</p>
-                            <p>07 Okt - 13.30</p>
-                            <p>07 Okt - 14.30</p>
-                            <p>08 Okt - 08.30</p>
-                            <p>08 Okt - 13.30</p>
-                            <p>09 Okt - 08.30</p>
-                            <p>09 Okt - 13.30</p>
-                            <p>09 Okt - 18.30</p>
-                        </div>
-                    </div>
-                    <!--HISTORY CLOSE-->
-                    
-                    <!--MERCHANDISE-->
-                    <div>
-                        <p class="text-gray-400 pt-4 font-medium text-xs">MERCHANDISE</p>
-                        <div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label pl-2 font-bold text-md" for="flexCheckDefault">
-                                  Package
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label pl-2 font-bold text-md" for="flexCheckDefault">
-                                  Co-Card
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label pl-2 font-bold text-md" for="flexCheckDefault">
-                                  Certificate
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <!--MERCHANDISE CLOSE-->
                 </div>
                 <!--GRID CLOSE-->
 
@@ -167,3 +66,86 @@
     </main>
 </body>
 </html>
+
+<script>
+    async  function getData(url){
+        const response = await fetch(url);
+        const {data} =  await response.json();
+        return data;
+
+    };
+
+    getData('http://192.168.18.80:8055/items/order?fields=customer_id.customer_id,customer_id.customer_name,ticket_id.ticket_id,ticket_id.ticket_type&filter[customer_id]=2').then(result =>{
+        
+        const elementName = document.querySelector('#customer');
+        const customerName =(data) =>`
+            <p class="text-gray-400 pt-4 font-medium text-xs">PARTICIPANT NAME</p>
+            <p class="font-bold  text-xl">${result[0].customer_id.customer_name}</p>
+        `;
+        const elementId = document.querySelector('#participant');
+        const customerId = (data) => `
+            <p class="text-gray-400 pt-4 font-medium text-xs">ID PARTICIPANT</p>
+            <p class="font-bold text-md">${result[0].customer_id.customer_id}</p>
+        `;
+        const elementDesc = document.querySelector('#ticket');
+        const description =(data) =>`
+             <p class="text-gray-400 pt-4 font-medium text-xs">TICKET TYPE</p>
+             <p class="font-bold text-md">${result[0].ticket_id.ticket_type}</p>
+         `;
+    result.map(data=>{
+        elementName.innerHTML = customerName(data);
+        elementId.innerHTML = customerId(data);
+        elementDesc.innerHTML = description(data);
+    });
+    })
+
+    async function getDataRegistration(url){
+        const response = await fetch(url);
+        const {data} =  await response.json();
+        return data;
+
+    };
+    getDataRegistration('http://192.168.18.68:8055/items/registration?filter[id_participant]=2').then(result =>{
+
+        const elementHtml = document.querySelector('#session');
+        const session =(data) =>`
+        <div class="font-bold text-md pb-6">
+            <p>${data.id_session}</p>
+        </div>
+        `;
+        const validatedOn = document.querySelector('#registration');
+        const registration =(data) =>`
+            <p class="font-bold text-md">${data.validated_on}</p>
+         `;
+        result.map(data=>{
+           elementHtml.innerHTML += session(data);
+           validatedOn.innerHTML += registration(data);
+        });
+    })
+
+    async function getDataMerch(url){
+        const response = await fetch(url);
+        const {data} =  await response.json();
+        return data;
+
+    };
+    getDataRegistration('http://192.168.18.83:8055/items/peserta_x_merch_eligible?fields=id_peserta_x_merch,id_merch_eligible.id_merch.nama_merch&filter[id_peserta_x_merch]=2').then(result =>{
+        // console.log(result.id_merch_eligible)
+        result.map(data=>{
+            // console.log(data.id_merch_eligible.id_merch.nama_merch)
+        
+            const elementHtml = document.querySelector('#merch');
+            const merchandise =(data) =>`
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label pl-2 font-bold text-md" for="flexCheckDefault">
+                        ${data.id_merch_eligible.id_merch.nama_merch}
+                    </label>
+            </div>
+            `;
+
+            elementHtml.innerHTML += merchandise(data);
+        });
+    })
+
+</script>
