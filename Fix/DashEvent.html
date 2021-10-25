@@ -24,9 +24,8 @@
             </div>
 
             <!--ACTIVE NOW-->
-            <div class="flex items-center justify-center mt-3">
+            <div id="count" class="flex items-center justify-center mt-3">
                 <h2 class="font-bold">Active Now : </h2>
-                <p class="font-bold text-blue-900 ml-2"> 329</p>
             </div>
 
             <!--GRID-->
@@ -41,17 +40,29 @@
 </html>
 
 <script>
-    async function getDataDay(url){
-
-    const response = await fetch(url);
-    const {data} =  await response.json();
-    return data;
-
+    async function getDataCustomer(url){
+        const response = await fetch(url);
+        const {data} =  await response.json();
+        return data;
     };
+    getDataCustomer('http://192.168.18.68:8055/items/registration?aggregate[countDistinct]=id_participant').then(result=>{
+        const elementHtml = document.querySelector('#count');
+        const count =(data) =>`
+            <p class="font-bold text-blue-900 ml-2">${data.countDistinct.id_participant}</p>
+        `;
+        result.map(data=>{
+            elementHtml.innerHTML += count(data);
+        });
+    })
 
+
+    async function getDataDay(url){
+        const response = await fetch(url);
+        const {data} =  await response.json();
+        return data;
+    };
     //get API
-    getDataDay('http://192.168.18.82:8055/items/day').then(result =>{
-
+    getDataDay('http://192.168.18.80:8055/items/day').then(result =>{
         const elementHtml = document.querySelector('#day');
         const day =(data) =>`
         <button id="button-day" onclick="gatau()">
@@ -68,19 +79,14 @@
         });
     })
 
-
     async function getDataSession(url){
-
         const response = await fetch(url);
         const {data} =  await response.json();
         return data;
-
     };
-
-    
     function gatau(){
         //get API
-        getDataSession('http://192.168.18.82:8055/items/session').then(result =>{
+        getDataSession('http://192.168.18.80:8055/items/session').then(result =>{
             const elementHtml = document.querySelector('#session');
 
             if(elementHtml.classList.contains("active")){
