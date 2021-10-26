@@ -7,6 +7,11 @@
     <title>Novia</title>
     <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      table tr:nth-child(even){
+    background-color: #E5E7EB
+}
+    </style>
 </head>
 <body style="background-color: #EAEAEA;">
   <main class="w-full">
@@ -26,42 +31,52 @@
         </div> -->
 
         <!--SEARCH BAR-->
-        <div class="mt-2">
-          <div class="bg-white flex w-11/12 items-center rounded-xl shadow-xl mx-auto">
-              <input class="rounded-xl w-full py-3 px-6 text-gray-700 leading-tight focus:outline-none" id="text" type="text" placeholder="Participant ID/Link">
+        <div class="container mt-2 w-11/12 mx-auto">
+          <div class="grid grid-column-2 grid-flow-col gap-2 mx-2">
+            <div class=" col-span-2 bg-white flex items-center rounded-xl shadow-xl mx-auto">
+                <input class="rounded-xl w-full py-3 px-6 text-gray-700 leading-tight focus:outline-none" id="text" type="text" placeholder="Participant ID/Link">
 
-            <!--ICONIFY FILTER-->
-            <div class="filter md:filter-none px-4">
-              <a href="#">
-               <span class="iconify" data-icon="bi:filter-circle-fill"></span>
-              </a>
+              <!--ICONIFY FILTER-->
+              <div class="filter md:filter-none px-4">
+                <a href="#">
+                <span class="iconify" data-icon="bi:filter-circle-fill"></span>
+                </a>
+              </div>
+
+                <!--ICONIFY SEARCH-->
+              <div class="">
+                <a href="DashPart_Detail.html">
+                  <span class="iconify" data-icon="akar-icons:search"></span>
+                </a>
+              </div>
+
+              <!--ICONIFY QR CODE-->
+              <div class="px-2">
+                <a href="DashPart_Scan.html">
+                  <span class="iconify" data-icon="ic:outline-qr-code-scanner"></span>
+                </a>
+              </div>
             </div>
-
-              <!--ICONIFY SEARCH-->
-            <div class="">
-              <a href="DashPart_Detail.html">
-                <span class="iconify" data-icon="akar-icons:search"></span>
-              </a>
+                <!--		Show Numbers Of Rows 		-->
+                <div class="col-span-2 bg-white flex items-center rounded-xl shadow-xl mx-auto">
+                <select class="rounded-xl w-full py-3 px-6 text-gray-700 leading-tight" name="state" id="maxRows" style="float: right;">
+                  <option value="5000">Show ALL Rows</option>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
             </div>
-
-            <!--ICONIFY QR CODE-->
-            <div class="px-2">
-              <a href="DashPart_Scan.html">
-                <span class="iconify" data-icon="ic:outline-qr-code-scanner"></span>
-              </a>
-            </div>
-
-          </div>
         </div>
 
         <!--CARD-->
         <div class="bg-gray-50 w-11/12 mx-auto rounded-xl mt-10 pt-2">
-
-              <div class="overflow-auto h-screen">
-
                 <!--TABLE-->
-                <table class="md:text-xl text-base table-auto w-full " >
-                  <thead  class="sticky -top-0.5 bg-gray-50">
+               
+                <table id="table-id" class="md:text-xl text-base table-auto w-full " >
+                  <thead class="sticky -top-0.5 bg-gray-50">
                   <tr>
                       <th>Nama</th>
                       <th>Id Participant</th>
@@ -70,8 +85,24 @@
                   </thead>
                   <tbody id="customer" class="text-center"></tbody>
               </table>
-              </div>
-        </div>
+      
+         <!--		Start Pagination -->
+         <div class="container flex justify-center mx-auto">
+           <nav>
+              <ul class="pagination flex" style="cursor: pointer;">
+                  <li data-page="prev">
+                    <button class="px-4 py-2 my-2 mx-1 text-white bg-blue-500 rounded-full hover:bg-gray-700 hover:text-black" > < 
+                      <button class="sr-only ">(current)</button>
+                    </button>
+                  </li>
+                  <li data-page="next" id="prev">
+                    <button class="px-4 py-2 my-2 mx-1 text-white bg-blue-500 rounded-full hover:bg-gray-700 hover:text-black"> > 
+                      <button class="sr-only">(current)</button></button>
+                  </li>
+              </ul>
+        </nav>
+      </div>
+          
         <!--CARD CLOSE-->
       </section>
     </main>
@@ -86,7 +117,7 @@
 
     };
 
-    getDataCustomer('http://192.168.18.82:8055/items/customer').then(result =>{
+    getDataCustomer('http://192.168.18.68:8055/items/customer').then(result =>{
 
     const elementHtml = document.querySelector('#customer');
     const customer =(data) =>`
@@ -94,11 +125,10 @@
           <td>${data.customer_name}</td>
           <td>${data.customer_id}</td>
           <td>
-          <a href="DashPart_Detail.html">
-            <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-            Detail
-          </button>
-          </a>
+            <a href="DashPart_Detail.html">
+              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+              Detail</button>
+            </a>
           </td>
         </tr>
     `;
@@ -107,7 +137,12 @@
         elementHtml.innerHTML += customer(data);
     });
     })
-        
-
-     
+</script>
+<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/js.js"></script>
+<script type="text/javascript">
+  getPagination('#table-id');
+  //getPagination('.table-class');
+  //getPagination('table');
 </script>

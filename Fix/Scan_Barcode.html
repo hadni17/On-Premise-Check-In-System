@@ -72,26 +72,25 @@
             const camQrResult = document.getElementById('cam-qr-result');
             const camHasFlash = document.getElementById('cam-has-flash');
             const flashToggle = document.getElementById('flash-toggle');
-            const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
          
             function setResult(label, result) {
                 alert(result);
                 label.style.color = 'teal';
                 document.getElementById('cam-qr-result').value=result;
             }
-        
-            const updateFlashAvailability = () => {
-            scanner.hasFlash().then(hasFlash => {
-            camHasFlash.textContent = hasFlash;
-            flashToggle.style.display = hasFlash ? 'inline-block' : 'none';
-        });
-    };
-            // ####### Web Cam Scanning #######
-        
             const scanner = new QrScanner(video, result => setResult(camQrResult, result), error => {
                 camQrResult.textContent = error;
                 camQrResult.style.color = 'inherit';
             });
+            const updateFlashAvailability = () => {
+            scanner.hasFlash().then(hasFlash => {
+                if (camHasFlash){
+                    camHasFlash.textContent = hasFlash;
+                    flashToggle.style.display = hasFlash ? 'inline-block' : 'none';
+                    }
+        });
+    };
+            // ####### Web Cam Scanning #######
         
             scanner.start().then(() => {
                 updateFlashAvailability();
@@ -102,10 +101,12 @@
                     camList.add(option);
                 }));
             });
-        
+            
+            QrScanner.hasCamera().then(hasCamera => camHasCamera.textContent = hasCamera);
+    
             // for debugging
             window.scanner = scanner;
-            QrScanner.hasCamera().then(hasCamera => camHasCamera.textContent = hasCamera);
+            
              camList.addEventListener('change', event => {
                 scanner.setCamera(event.target.value).then(updateFlashAvailability);
             });
