@@ -7,10 +7,21 @@
     <title>DashPart_Detail</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
+    <link href="styles_DashPart_Detail.css" rel="stylesheet">
+    
 </head>
-<body style="background-color: #EAEAEA;">
+<body style="background-color: #EAEAEA;" onload="hide_loading();">
     <main class="w-full">
         <section class="w-full mx-auto pt-10 pb-40bg-contain bg-bottom" style="background-image: url('assets/bg.png');">
+
+            <!--LOADER-->
+            <div class="loading overlay">
+                <div class="lds-facebook"><div></div><div></div><div></div></div>
+            </div>
+
+            <!--DATA AJAX-->
+            <button onclick="tampil_data"></button>
+            <div id="data_api"></div>
 
             <!--ICONIFY-->
             <div class="flex items-center">
@@ -66,6 +77,7 @@
             </div>
         </section>
     </main>
+    <script src="script_DashPart_Detail.js"></script>
 </body>
 </html>
 
