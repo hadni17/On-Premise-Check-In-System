@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scan_CheckIn</title>
+    <title>Kar</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
 </head>
@@ -75,34 +75,39 @@
 
     };
 
-    getData('http://192.168.0.145:8055/items/order?fields=customer_id.customer_id,customer_id.customer_name,ticket_id.ticket_type,ticket_id.ticket_type,ticket_id.ticket_x_session.session_id.session_type&filter[ticket_id]=1').then(result =>{
-        
+    getData('http://192.168.18.68:8055/items/order?fields=customer_id.customer_id,customer_id.customer_name,ticket_id.ticket_type,ticket_id.ticket_type,ticket_id.ticket_x_session.session_id.session_type&filter[ticket_id]=1').then(result =>{
         const elementName = document.querySelector('#customer');
         const customerName =(data) =>`
             <p class="text-gray-400 pt-4 font-medium text-xs">PARTICIPANT NAME</p>
-            <p class="font-bold  text-xl">${result[0].customer_id.customer_name}</p>
+            <p class="font-bold  text-xl">${data.customer_id.customer_name}</p>
         `;
         const elementId = document.querySelector('#participant');
         const customerId = (data) => `
             <p class="text-gray-400 pt-4 font-medium text-xs">ID PARTICIPANT</p>
-            <p class="font-bold text-md">${result[0].customer_id.customer_id}</p>
+            <p class="font-bold text-md">${data.customer_id.customer_id}</p>
         `;
         const elementDesc = document.querySelector('#ticket');
         const description =(data) =>`
              <p class="text-gray-400 pt-4 font-medium text-xs">TICKET TYPE</p>
-             <p class="font-bold text-md">${result[0].ticket_id.ticket_type}</p>
+             <p class="font-bold text-md">${data.ticket_id.ticket_type}</p>
          `;
-        const elementHtml = document.querySelector('#session');
-        const session =(data) =>`
-             <p class="text-gray-400 pt-4 font-medium text-xs">TICKET TYPE</p>
-             <p class="font-bold text-md">${result[0].ticket_id.ticket_x_session.session_id.session_type}</p>
-         `;
-    result.map(data=>{
-        elementName.innerHTML = customerName(data);
-        elementId.innerHTML = customerId(data);
-        elementDesc.innerHTML = description(data);
-        elementHtml.innerHTML = session(data);
-    });
+        result.map(data=>{
+            for (let i = 0; i < data.ticket_id.ticket_x_session.length; i++) {
+                //console.log(data.ticket_id.ticket_x_session[i].session_id.session_type)
+                const elementSession = document.querySelector('#session');
+                const session =(data) =>`
+                    <p class="font-bold text-md">${data.ticket_id.ticket_x_session[i].session_id.session_type}</p>
+                `;
+                elementSession.innerHTML += session(data);
+            }
+        });
+
+        result.map(data=>{
+            elementName.innerHTML = customerName(data);
+            elementId.innerHTML = customerId(data);
+            elementDesc.innerHTML = description(data);
+            
+        });
     })
 
     async function getDataRegistration(url){
@@ -111,20 +116,12 @@
         return data;
 
     };
-    getDataRegistration('http://192.168.0.136.:8055/items/registration?filter[id_participant]=2&aggregate[min]=validated_on').then(result =>{
-
-       // const elementHtml = document.querySelector('#session');
-        //const session =(data) =>`
-        //<div class="font-bold text-md pb-6">
-        //    <p>${data.id_session}</p>
-        //</div>
-        //`;
+    getDataRegistration('http://192.168.18.60:8055/items/registration?filter[id_participant]=2&aggregate[min]=validated_on').then(result =>{
         const validatedOn = document.querySelector('#registration');
         const registration =(data) =>`
             <p class="font-bold text-md">${data.min.validated_on}</p>
          `;
         result.map(data=>{
-         //  elementHtml.innerHTML += session(data);
            validatedOn.innerHTML += registration(data);
         });
     })
@@ -135,7 +132,7 @@
         return data;
 
     };
-    getDataRegistration('http://192.168.0.148:8055/items/peserta_x_merch_eligible?fields=id_peserta_x_merch,id_merch_eligible.id_merch.nama_merch&filter[id_peserta_x_merch]=2').then(result =>{
+    getDataRegistration('http://192.168.18.65:8055/items/peserta_x_merch_eligible?fields=id_peserta_x_merch,id_merch_eligible.id_merch.nama_merch&filter[id_peserta_x_merch]=2').then(result =>{
         // console.log(result.id_merch_eligible)
         result.map(data=>{
             // console.log(data.id_merch_eligible.id_merch.nama_merch)
