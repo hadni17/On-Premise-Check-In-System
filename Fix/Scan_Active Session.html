@@ -20,64 +20,35 @@
                 <h1 class="mx-auto" style="font-size: 30px;"><b>Active Session</b></h1>
             </div>
             
-            <!--BUTTON SESSION 01-->
-            <div class="flex justify-center pt-6 pb-4">
-                <a href="Scan_Barcode.html" class="bg-white w-4/5 py-2 rounded-md shadow-lg px-4">
-                    <div class="flex items-center justify-between flex-row">
-                        <div class="rounded-full h-16 w-16 " style="background: #05FF00;"></div>
-                        <div class="text-left m-auto">
-                            <p class="text-xs">9AM-11AM</p>
-                            <p class="font-bold text-2xl">Session 01</p>
-                            <p class="text-sm truncate">Preserving Historical Objects</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--BUTTON SESSION 01 CLOSE-->
-
-            <!--BUTTON SESSION 02-->
-            <div class="flex justify-center pb-4">
-                <a href="Scan_Barcode.html" class="bg-white w-4/5 py-2 rounded-md shadow-lg px-4">
-                    <div class="flex items-center justify-between flex-row">
-                        <div class="rounded-full h-16 w-16 " style="background: #05FF00;"></div>
-                        <div class="text-left m-auto">
-                            <p class="text-xs">13PM-15PM</p>
-                            <p class="font-bold text-2xl">Session 02</p>
-                            <p class="text-sm truncate">Preserving Historical Objects</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--BUTTON SESSION 02 CLOSE-->
-
-            <!--BUTTON SESSION 03-->
-            <div class="flex justify-center pb-4">
-                <a href="Scan_Barcode.html" class="bg-white w-4/5 py-2 rounded-md shadow-lg px-4">
-                    <div class="flex items-center justify-between flex-row">
-                        <div class="rounded-full h-16 w-16 " style="background: #05FF00;"></div>
-                        <div class="text-left m-auto">
-                            <p class="text-xs">16PM-18PM</p>
-                            <p class="font-bold text-2xl">Session 03</p>
-                            <p class="text-sm truncate">Preserving Historical Objects</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--BUTTON SESSION 03 CLOSE-->
-            
-            <!-- <div class="flex justify-center">
-                <a href="scan.html" class="bg-white w-4/5 py-2 rounded-md shadow-lg">
-                    <div class="grid grid-cols-2 px-5">
-                        <div class="rounded-full h-16 w-16 m-auto" style="background: #05FF00;"></div>
-                        <div class="text-left">
-                            <p class="text-xs">16PM-18PM</p>
-                            <p class="font-bold text-2xl">Session 03</p>
-                            <p class="text-sm">Preserving Historical Objects</p>
-                        </div>
-                    </div>
-                </a>
-            </div> -->
+            <!--BUTTON SESSION -->
+            <div id="session"></div>
         </section>
     </main>
 </body>
 </html>
+
+<script>
+    async function getDataSession(url){
+        const response = await fetch(url);
+        const {data} =  await response.json();
+        return data;
+    };
+    getDataSession('http://192.168.18.68:8055/items/session?filter[day(start_time)][_eq]=03').then(result=>{
+        const elementHtml = document.querySelector('#session');
+        const session =(data) =>`
+        <div class="flex justify-center mx-auto rounded-xl mt-8">
+            <a href="Scan_Barcode.html" class="bg-white w-3/5 py-2 rounded-md shadow-lg px-4">
+                <div class="text-center hover:bg-gray-100 pb-20">
+                    <div class="text-center rounded-full h-16 w-16" style="background: #05FF00;"></div>
+                    <p class="text-xs md:text-base text-black">${data.start_time}</p>
+                    <p class="text-base md:text-xl font-bold text-gray-800">${data.session_type}</p>
+                    <p class="text-xl md:text-base text-gray-900">${data.session_desc}</p>
+                </div>
+            </a>
+        </div>
+        `;
+        result.map(data=>{
+            elementHtml.innerHTML += session(data);
+        });
+    })
+</script>

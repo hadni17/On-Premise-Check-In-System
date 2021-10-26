@@ -110,12 +110,13 @@
 </html>
 
 <script>
-   async  function getDataCustomer(url){
-        const response = await fetch(url);
-        const {data} =  await response.json();
-        return data;
+  async  function getDataCustomer(url){
+       const response = await fetch(url);
+       const {data} =  await response.json();
+       return data;
 
-    };
+   };
+
 
     getDataCustomer('http://192.168.18.68:8055/items/customer').then(result =>{
 
@@ -145,4 +146,26 @@
   getPagination('#table-id');
   //getPagination('.table-class');
   //getPagination('table');
+   getDataCustomer('http://192.168.18.68:8055/items/customer').then(result =>{
+
+   const elementHtml = document.querySelector('#customer');
+   const customer =(data) =>`
+       <tr>
+         <td>${data.customer_name}</td>
+         <td>${data.customer_id}</td>
+         <td>
+         <a href="DashPart_Detail.html">
+           <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+           Detail
+         </button>
+         </a>
+         </td>
+       </tr>
+   `;
+
+   result.map(data=>{
+       elementHtml.innerHTML += customer(data);
+   });
+   })
+  
 </script>
