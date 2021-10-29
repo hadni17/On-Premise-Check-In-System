@@ -7,21 +7,10 @@
     <title>DashPart_Detail</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
-    <link href="styles_DashPart_Detail.css" rel="stylesheet">
-    
 </head>
-<body style="background-color: #EAEAEA;" onload="hide_loading();">
+<body style="background-color: #EAEAEA;">
     <main class="w-full">
         <section class="w-full mx-auto pt-10 pb-40bg-contain bg-bottom" style="background-image: url('assets/bg.png');">
-
-            <!--LOADER-->
-            <div class="loading overlay">
-                <div class="lds-facebook"><div></div><div></div><div></div></div>
-            </div>
-
-            <!--DATA AJAX-->
-            <button onclick="tampil_data"></button>
-            <div id="data_api"></div>
 
             <!--ICONIFY-->
             <div class="flex items-center">
@@ -52,7 +41,7 @@
                         <div id="ticket"></div>
 
                         <div id="session">
-                            <p class="text-gray-400 pt-4 font-medium text-xs">HISTORY</p>
+                            <p class="text-gray-400 pt-4 font-medium text-xs">SESSION</p>
                         </div>
                         
                     </div>
@@ -73,11 +62,11 @@
 
                 <!--BUTTON SUBMIT-->
                 <br>
+                <br>
                 <a href="DashPart_Scan.html" type="button" class="flex justify-center bg-blue-400 text-white w-4/5 mx-auto py-2 rounded-md"><b>Submit</b></a>
             </div>
         </section>
     </main>
-    <script src="script_DashPart_Detail.js"></script>
 </body>
 </html>
 
@@ -90,6 +79,7 @@
     };
 
     getData('http://192.168.18.68:8055/items/order?fields=customer_id.customer_id,customer_id.customer_name,ticket_id.ticket_type,ticket_id.ticket_type,ticket_id.ticket_x_session.session_id.session_type&filter[ticket_id]=1').then(result =>{
+        
         const elementName = document.querySelector('#customer');
         const customerName =(data) =>`
             <p class="text-gray-400 pt-4 font-medium text-xs">PARTICIPANT NAME</p>
@@ -105,16 +95,17 @@
              <p class="text-gray-400 pt-4 font-medium text-xs">TICKET TYPE</p>
              <p class="font-bold text-md">${data.ticket_id.ticket_type}</p>
          `;
-        result.map(data=>{
-            for (let i = 0; i < data.ticket_id.ticket_x_session.length; i++) {
-                //console.log(data.ticket_id.ticket_x_session[i].session_id.session_type)
-                const elementSession = document.querySelector('#session');
-                const session =(data) =>`
-                    <p class="font-bold text-md">${data.ticket_id.ticket_x_session[i].session_id.session_type}</p>
-                `;
-                elementSession.innerHTML += session(data);
-            }
-        });
+
+        // result.map(data=>{
+        //     for (let i = 0; i < data.ticket_id.ticket_x_session.length; i++) {
+        //         //console.log(data.ticket_id.ticket_x_session[i].session_id.session_type)
+        //         const elementSession = document.querySelector('#session');
+        //         const session =(data) =>`
+        //             <p class="font-bold text-md">${data.ticket_id.ticket_x_session[i].session_id.session_type}</p>
+        //         `;
+        //         elementSession.innerHTML += session(data);
+        //     }
+        // });
 
         result.map(data=>{
             elementName.innerHTML = customerName(data);
@@ -124,6 +115,20 @@
         });
     })
 
+    async function getDataSession(url){
+        const response = await fetch(url);
+        const {data} =  await response.json();
+        return data;
+    };
+    getDataSession('http://192.168.18.60:8055/items/registration?filter[id_participant]=2&filter[validated_on][_between]=[2020-01-1,2200-12-12]').then(result=>{
+        const elementHtml = document.querySelector('#session');
+        const session = (data) =>`
+            <p class="font-bold text-md">${data.id_session}</p>
+        `;
+        result.map(data=>{
+            elementHtml.innerHTML += session(data);
+        });
+    })
     async function getDataRegistration(url){
         const response = await fetch(url);
         const {data} =  await response.json();

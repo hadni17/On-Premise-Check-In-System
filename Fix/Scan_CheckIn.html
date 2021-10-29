@@ -40,7 +40,7 @@
                         <div id="ticket"></div>
 
                         <div id="session">
-                            <p class="text-gray-400 pt-4 font-medium text-xs">HISTORY</p>
+                            <p class="text-gray-400 pt-4 font-medium text-xs">SESSION</p>
                         </div>
                         
                     </div>
@@ -60,6 +60,8 @@
                 <!--GRID CLOSE-->
 
                 <!--BUTTON SUBMIT-->
+                <br>
+                <br>
                 <a href="Scan_Barcode.html" type="button" class="flex justify-center bg-blue-400 text-white w-4/5 mx-auto py-2 rounded-md"><b>Submit</b></a>
             </div>
         </section>
@@ -91,22 +93,38 @@
              <p class="text-gray-400 pt-4 font-medium text-xs">TICKET TYPE</p>
              <p class="font-bold text-md">${data.ticket_id.ticket_type}</p>
          `;
-        result.map(data=>{
-            for (let i = 0; i < data.ticket_id.ticket_x_session.length; i++) {
-                //console.log(data.ticket_id.ticket_x_session[i].session_id.session_type)
-                const elementSession = document.querySelector('#session');
-                const session =(data) =>`
-                    <p class="font-bold text-md">${data.ticket_id.ticket_x_session[i].session_id.session_type}</p>
-                `;
-                elementSession.innerHTML += session(data);
-            }
-        });
+        // result.map(data=>{
+        //     for (let i = 0; i < data.ticket_id.ticket_x_session.length; i++) {
+        //         //console.log(data.ticket_id.ticket_x_session[i].session_id.session_type)
+        //         const elementSession = document.querySelector('#session');
+        //         const session =(data) =>`
+        //             <p class="font-bold text-md">${data.ticket_id.ticket_x_session[i].session_id.session_type}</p>
+        //         `;
+        //         elementSession.innerHTML += session(data);
+        //     }
+        // });
 
         result.map(data=>{
             elementName.innerHTML = customerName(data);
             elementId.innerHTML = customerId(data);
             elementDesc.innerHTML = description(data);
             
+        });
+    })
+
+
+    async function getDataSession(url){
+        const response = await fetch(url);
+        const {data} =  await response.json();
+        return data;
+    };
+    getDataSession('http://192.168.18.60:8055/items/registration?filter[id_participant]=2&filter[validated_on][_between]=[2020-01-1,2200-12-12]').then(result=>{
+        const elementHtml = document.querySelector('#session');
+        const session = (data) =>`
+            <p class="font-bold text-md">${data.id_session}</p>
+        `;
+        result.map(data=>{
+            elementHtml.innerHTML += session(data);
         });
     })
 
