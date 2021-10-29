@@ -6,6 +6,7 @@
 - fade in all tr between (maxRows*PageNum) and (maxRows*pageNum)- MaxRows 
 */
 
+
 function getPagination(table) {
   var lastPage = 1;
 
@@ -27,7 +28,9 @@ function getPagination(table) {
         $('.pagination').show();
       }
 
+
       var totalRows = $(table + ' tbody tr').length; // numbers of rows
+      // alert(totalRows)
       $(table + ' tr:gt(0)').each(function() {
         // each TR in  table and not the header
         trnum++; // Start Counter
@@ -121,7 +124,7 @@ function limitPagging() {
       $('.pagination [data-page="next"]').show();
     }
     if ($('.pagination li.active').attr('data-page') > 3) {
-      $('.pagination li:gt(0)').hide();
+      $('.pagination li:gt(1)').hide();
       $('.pagination [data-page="next"]').show();
       for (
         let i = parseInt($('.pagination li.active').attr('data-page')) - 2;

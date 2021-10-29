@@ -59,7 +59,7 @@
             </div>
                 <!--		Show Numbers Of Rows 		-->
                 <div class="col-span-2 bg-white flex items-center rounded-xl shadow-xl mx-auto">
-                <select class="rounded-xl w-full py-3 px-6 text-gray-700 leading-tight" name="state" id="maxRows" style="float: right;">
+                <select class="rounded-xl w-full py-3 px-6 text-gray-700 leading-tight" name="state" id="maxRows">
                   <option value="5000">Show ALL Rows</option>
                   <option value="5">5</option>
                   <option value="10">10</option>
@@ -75,7 +75,7 @@
         <div class="bg-gray-50 w-11/12 mx-auto rounded-xl mt-10 pt-2">
                 <!--TABLE-->
                
-                <table id="table-id" class="md:text-xl text-base table-auto w-full " >
+                <table id="customer" class="md:text-xl text-base table-auto w-full text-center " >
                   <thead class="sticky -top-0.5 bg-gray-50">
                   <tr>
                       <th>Nama</th>
@@ -83,7 +83,7 @@
                       <th>Action</th>
                   </tr>
                   </thead>
-                  <tbody id="customer" class="text-center"></tbody>
+                  <!-- <tbody id="customer" class="text-center"></tbody> -->
               </table>
       
          <!--		Start Pagination -->
@@ -110,17 +110,46 @@
 </html>
 
 <script>
-   async  function getDataCustomer(url){
+  //  async  function getDataCustomer(url){
+  //       const response = await fetch(url);
+  //       const {data} =  await response.json();
+  //       return data;
+
+  //   };
+  //   getDataCustomer('http://192.168.18.68:8055/items/customer').then(result =>{
+
+  //   const elementHtml = document.querySelector('#customer');
+  //   const customer =(data) =>`
+  //       <tr>
+  //         <td>${data.customer_name}</td>
+  //         <td>${data.customer_id}</td>
+  //         <td>
+  //           <a href="DashPart_Detail.html">
+  //             <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+  //             Detail</button>
+  //           </a>
+  //         </td>
+  //       </tr>
+  //   `;
+
+  //   result.map(data=>{
+  //       elementHtml.innerHTML += customer(data);
+  //   });
+  //   })
+</script>
+<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/js.js"></script>
+<script type="text/javascript">
+      async function getDataCustomer(url){
         const response = await fetch(url);
         const {data} =  await response.json();
         return data;
+      };
+      getDataCustomer('http://192.168.18.68:8055/items/customer').then(result =>{
 
-    };
-
-    getDataCustomer('http://192.168.18.68:8055/items/customer').then(result =>{
-
-    const elementHtml = document.querySelector('#customer');
-    const customer =(data) =>`
+      const elementHtml = document.querySelector('#customer');
+      const customer =(data) =>`
         <tr>
           <td>${data.customer_name}</td>
           <td>${data.customer_id}</td>
@@ -131,18 +160,13 @@
             </a>
           </td>
         </tr>
-    `;
+      `;
 
-    result.map(data=>{
+      result.map(data=>{
         elementHtml.innerHTML += customer(data);
-    });
-    })
-</script>
-<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/js.js"></script>
-<script type="text/javascript">
-  //getPagination('#table-id');
+      });
+      });
+  getPagination('#customer');
   //getPagination('.table-class');
-  getPagination('table');
+  //getPagination('table');
 </script>
