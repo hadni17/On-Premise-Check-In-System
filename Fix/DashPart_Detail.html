@@ -27,7 +27,9 @@
                     </div>
 
                     <!--NOTIFY CHECKED-->
-                    <div class="w-1/4 py-1 rounded-sm text-white text-center mt-6 text-xs" style="background: #39A852;">Checked</div>
+                    <div>
+                        <p id="status" class="px-4 py-3 rounded-sm text-white text-center mt-6 text-xs"></p>
+                    </div>
                 </div>
                 <!--GRID-->
                 <div class="grid grid-cols-2 px-5">
@@ -70,6 +72,7 @@
 </body>
 </html>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     async  function getData(url){
         const response = await fetch(url);
@@ -78,7 +81,7 @@
 
     };
 
-    getData('http://192.168.18.226:8055/items/order?fields=customer_id.customer_id,customer_id.customer_name,ticket_id.ticket_type,ticket_id.ticket_type,ticket_id.ticket_x_session.session_id.session_type&filter[ticket_id]=1').then(result =>{
+    getData('http://192.168.18.226:8001/items/order?fields=customer_id.customer_id,customer_id.customer_name,ticket_id.ticket_type,ticket_id.ticket_type,ticket_id.ticket_x_session.session_id.session_type&filter[ticket_id]=1').then(result =>{
         
         const elementName = document.querySelector('#customer');
         const customerName =(data) =>`
@@ -133,16 +136,33 @@
         const response = await fetch(url);
         const {data} =  await response.json();
         return data;
-
     };
-    getDataRegistration('http://192.168.18.60:8055/items/registration?filter[id_participant]=2&aggregate[min]=validated_on').then(result =>{
+    getDataRegistration('http://192.168.18.54:8055/items/registration?filter[id_participant]=4&aggregate[min]=validated_on').then(result =>{
         const validatedOn = document.querySelector('#registration');
         const registration =(data) =>`
-            <p class="font-bold text-md">${data.min.validated_on}</p>
-         `;
-        result.map(data=>{
-           validatedOn.innerHTML += registration(data);
-        });
+            <p class="font-bold text-md">${data}</p>
+        `;
+        let status = '';
+        const time_validated = moment(result[0].min.validated_on).format('L')
+        console.log(time_validated)
+        const time = moment(new Date).format('L');
+        console.log(time_validated > time) 
+        if(time_validated > time){
+            document.getElementById("status").style.backgroundColor = "green"
+            status = "Check In";
+        } else if (time_validated === null){
+            document.getElementById("status").style.backgroundColor = "red"
+            status = "NonActive";
+        } else  {
+            document.getElementById("status").style.backgroundColor = "gray"
+            status = "Check Out";
+        }
+        document.getElementById("status").innerHTML = status;
+         
+        // result.map(data=>{
+        //     console.log(data)
+           validatedOn.innerHTML += registration(moment(result[0].min.validated_on).format("LLLL"));
+        // });
     })
 
     async function getDataMerch(url){
