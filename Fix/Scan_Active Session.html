@@ -33,22 +33,23 @@
         const {data} =  await response.json();
         return data;
     };
-    getDataSession('http://192.168.18.68:8055/items/session?filter[day(start_time)][_eq]=03').then(result=>{
+    getDataSession('http://192.168.18.226:8001/items/session?fields=session_type,session_desc,session_speaker_name,start_time&filter[day(start_time)][_eq]=03&filter[hour(start_time)][_eq]=17').then(result=>{        
         const elementHtml = document.querySelector('#session');
         const session =(data) =>`
         <div class="flex justify-center mx-auto rounded-xl mt-8">
             <a href="Scan_Barcode.html" class="bg-white w-3/5 py-2 rounded-md shadow-lg px-4">
                 <div class="text-center hover:bg-gray-100 pb-20">
                     <div class="text-center rounded-full h-16 w-16" style="background: #05FF00;"></div>
-                    <p class="text-xs md:text-base text-black">${data.start_time}</p>
                     <p class="text-base md:text-xl font-bold text-gray-800">${data.session_type}</p>
                     <p class="text-xl md:text-base text-gray-900">${data.session_desc}</p>
+                    <p class="text-xs md:text-base text-black">${data.start_time}</p>
+                    <p class="text-xs md:text-base text-black">${data.session_speaker_name}</p>
                 </div>
             </a>
         </div>
         `;
         result.map(data=>{
-            elementHtml.innerHTML += session(data);
+           elementHtml.innerHTML += session(data);
         });
     })
 </script>
