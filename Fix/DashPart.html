@@ -7,17 +7,7 @@
     <title>Novia</title>
     <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-      th {
-      cursor: pointer;
-      }
-      table.sortable thead tr th {
-        background-repeat: no-repeat;
-        background-position: right ;
-        cursor: pointer;
-        background-image: url(assets/sort.png);
-}
-    </style>
+    <link rel="stylesheet" href="datatable.css">
 </head>
 <body style="background-color: #EAEAEA;">
   <main class="w-full">
@@ -29,136 +19,55 @@
           </a>
           <h1 class="text-3xl mx-auto font-semibold" style="font-family: 'Montserrat', sans-serif;">Participant</h1>
         </div>
-
-        <!--SEARCH BAR-->
-        <div class="container mt-2 w-11/12 mx-auto">
-          <div class="grid grid-column-2 grid-flow-col gap-2 mx-2">
-            <div class=" col-span-2 bg-white flex items-center rounded-xl shadow-xl mx-auto">
-                <input class="rounded-xl w-full py-3 px-6 text-gray-700 leading-tight focus:outline-none" id="text" type="text" placeholder="Participant ID/Link">
-
-              <!--ICONIFY FILTER-->
-              <div class="filter md:filter-none px-4">
-                <a href="#">
-                <span class="iconify" data-icon="bi:filter-circle-fill"></span>
-                </a>
-              </div>
-
-                <!--ICONIFY SEARCH-->
-              <div class="">
-                <a href="DashPart_Detail.html">
-                  <span class="iconify" data-icon="akar-icons:search"></span>
-                </a>
-              </div>
-
-              <!--ICONIFY QR CODE-->
-              <div class="px-2">
-                <a href="Scan_Barcode.html">
-                  <span class="iconify" data-icon="ic:outline-qr-code-scanner"></span>
-                </a>
-              </div>
-            </div>
-                <!--		Show Numbers Of Rows 		-->
-                <div class="col-span-2 bg-white flex items-center rounded-xl shadow-xl mx-auto">
-                <select class="rounded-xl w-full py-3 px-6 text-gray-700 leading-tight" name="state" id="maxRows" style="float: right;">
-                  <option value="5000">Show ALL Rows</option>
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
-                </select>
-            </div>
-        </div>
-
-        <!--CARD-->
-        <div class="bg-gray-50 w-11/12 mx-auto rounded-xl mt-10 pt-2">
                 <!--TABLE-->
-
-                <table id="table-id" class="sortable md:text-xl text-base table-fix w-full " >
-                  <thead class="sticky -top-0.5 bg-gray-50">
+                <div class="container w-11/12 mx-auto mt-10 " style="margin-top: -4px;">
+                <table id="table-id" class="sortable md:text-xl mx-auto text-base table-fix w-full pt-2 px-2" style="border-radius: 15px;">
+                  <thead class="sticky -top-0.5">
                   <tr>
-                      <th class="w-1/3">Nama</th>
-                      <th>Id Participant</th>
-                      <th>Action</th>
+                      <th class="w-1/3 bg-white rounded-xl">Nama</th>
+                      <th class="bg-white">Id Participant</th>
+                      <th class="bg-white rounded-xl">Action</th>
                   </tr>
                   </thead>
                   <tbody id="customer" class="text-center"></tbody>
+                  </div>
               </table>
-
-         <!--		Start Pagination -->
-         <div class="container flex justify-center mx-auto">
-           <nav>
-              <ul class="pagination flex" style="cursor: pointer;">
-                  <li data-page="prev">
-                    <button class="px-4 py-2 my-2 mx-1 text-white bg-blue-500 rounded-full hover:bg-gray-700 hover:text-black" > < 
-                      <button class="sr-only ">(current)</button>
-                    </button>
-                  </li>
-                  <li data-page="next" id="prev">
-                    <button class="px-4 py-2 my-2 mx-1 text-white bg-blue-500 rounded-full hover:bg-gray-700 hover:text-black"> > 
-                      <button class="sr-only">(current)</button></button>
-                  </li>
-              </ul>
-        </nav>
-      </div>
-        <!--CARD CLOSE-->
       </section>
     </main>
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="../js/js.js"></script>
+
 <script>
-   async  function getDataCustomer(url){
-        const response = await fetch(url);
-        const {data} =  await response.json();
-        return data;
+//    async  function getDataCustomer(url){
+//         const response = await fetch(url);
+//         const {data} =  await response.json();
+//         return data;
 
-    };
-    //getDataCustomer('http://192.168.18.226:8055/items/order?fields=customer_id.customer_id,customer_id.customer_email,customer_id.customer_name,ticket_id.ticket_id,ticket_id.ticket_type,ticket_id.ticket_x_session.session_id.,ticket_id.ticket_x_day.day_id.,invoice_id.invoice_status,invoice_id.customer_id.customer_email&filter[invoice_id][invoice_status]=1').then(result =>
-     getDataCustomer('http://192.168.18.226:8055/items/customer').then(result =>
-    {
+//     };
+//     //getDataCustomer('http://192.168.18.226:8055/items/order?fields=customer_id.customer_id,customer_id.customer_email,customer_id.customer_name,ticket_id.ticket_id,ticket_id.ticket_type,ticket_id.ticket_x_session.session_id.,ticket_id.ticket_x_day.day_id.,invoice_id.invoice_status,invoice_id.customer_id.customer_email&filter[invoice_id][invoice_status]=1').then(result =>
+//      getDataCustomer('http://192.168.0.138:8001/items/customer').then(result =>
+//     {
 
-    const elementHtml = document.querySelector('#customer');
-    const customer =(data) =>`
-        <tr>
-          <td>${data.customer_name}</td>
-          <td>${data.customer_id}</td>
-          <td>
-            <a href="DashPart_Detail.html">
-              <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
-              Detail</button>
-            </a>
-          </td>
-        </tr>
-    `;
-
-    result.map(data=>{
-        elementHtml.innerHTML += customer(data);
-    });
-    })
-  //PAGINATION
-    getPagination('#table-id');
-    //getPagination('.table-class');
-   // getPagination('table');
-
-  //SORT TABLE
-  $('th').click(function(){
-    var table = $(this).parents('table').eq(0)
-    var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
-    this.asc = !this.asc
-    if (!this.asc){rows = rows.reverse()}
-    for (var i = 0; i < rows.length; i++){table.append(rows[i])}
-})
-function comparer(index) {
-    return function(a, b) {
-        var valA = getCellValue(a, index), valB = getCellValue(b, index)
-        return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
-    }
-}
-function getCellValue(row, index){ 
-  return $(row).children('td').eq(index).text() 
-}
+//     const elementHtml = document.querySelector('#customer');
+//     const customer =(data) =>`
+//         <tr>
+//           <td>${data.customer_name}</td>
+//           <td>${data.customer_id}</td>
+//           <td>
+        //     <a href="DashPart_Detail.html">
+        //       <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+        //       Detail</button>
+        //     </a>
+        //   </td>
+//         </tr>
+//     `;
+//     result.map(data=>{
+//         elementHtml.innerHTML += customer(data);
+//     });
+//     })
  
+  
 </script>
