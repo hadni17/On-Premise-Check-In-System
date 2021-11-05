@@ -137,13 +137,13 @@
         const {data} =  await response.json();
         return data;
     };
-    getDataRegistration('http://192.168.18.54:8055/items/registration?filter[id_participant]=4&aggregate[min]=validated_on').then(result =>{
+    getDataRegistration('http://192.168.18.54:8055/items/registration?filter[id_participant]=4&aggregate[max]=validated_on').then(result =>{
         const validatedOn = document.querySelector('#registration');
         const registration =(data) =>`
             <p class="font-bold text-md">${data}</p>
         `;
         let status = '';
-        const time_validated = moment(result[0].min.validated_on).format('L')
+        const time_validated = moment(result[0].max.validated_on).format('L')
         console.log(time_validated)
         const time = moment(new Date).format('L');
         console.log(time_validated > time) 
@@ -158,11 +158,7 @@
             status = "Check Out";
         }
         document.getElementById("status").innerHTML = status;
-         
-        // result.map(data=>{
-        //     console.log(data)
-           validatedOn.innerHTML += registration(moment(result[0].min.validated_on).format("LLLL"));
-        // });
+           validatedOn.innerHTML += registration(moment(result[0].max.validated_on).format("LLLL"));
     })
 
     async function getDataMerch(url){
