@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novia</title>
+    <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="datatable.css">
+</head>
+<body style="background-color: #EAEAEA;">
+  <main class="w-full">
+    <section class="w-full mx-auto pt-10 pb-40 bg-contain bg-bottom" style="background-image: url('assets/bg.png'); "> 
+        <!--ICONIFY BACK-->
+        <div class="flex items-center">
+          <a href="/Fix/Landpage.html" class="pl-5">
+            <span class="iconify text-5xl" data-icon="bi:arrow-left-short"></span>
+          </a>
+          <h1 class="text-3xl mx-auto font-semibold" style="font-family: 'Montserrat', sans-serif;">Participant</h1>
+        </div>
+                <!--TABLE-->
+                <div class="container w-11/12 mx-auto mt-10 " style="margin-top: -4px;">
+                <table id="table-id" class="sortable md:text-xl mx-auto text-base table-fix w-full pt-2 px-2" style="border-radius: 15px;">
+                  <thead class="sticky -top-0.5">
+                  <tr>
+                      <th class="w-1/3 bg-white rounded-xl">Nama</th>
+                      <th class="bg-white">Id Participant</th>
+                      <th class="bg-white rounded-xl">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody id="customer" class="text-center"></tbody>
+                  </div>
+              </table>
+      </section>
+    </main>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="js/js.js"></script>
+
+<script>
+//    async  function getDataCustomer(url){
+//         const response = await fetch(url);
+//         const {data} =  await response.json();
+//         return data;
+
+//     };
+//     //getDataCustomer('http://192.168.18.226:8055/items/order?fields=customer_id.customer_id,customer_id.customer_email,customer_id.customer_name,ticket_id.ticket_id,ticket_id.ticket_type,ticket_id.ticket_x_session.session_id.,ticket_id.ticket_x_day.day_id.,invoice_id.invoice_status,invoice_id.customer_id.customer_email&filter[invoice_id][invoice_status]=1').then(result =>
+//      getDataCustomer('http://192.168.0.138:8001/items/customer').then(result =>
+//     {
+
+//     const elementHtml = document.querySelector('#customer');
+//     const customer =(data) =>`
+//         <tr>
+//           <td>${data.customer_name}</td>
+//           <td>${data.customer_id}</td>
+//           <td>
+        //     <a href="DashPart_Detail.html">
+        //       <button class="bg-blue-500 hover:bg-gray-700 text-white font-bold px-3 py-1 md:py-2 md:px-4 rounded-full my-2">
+        //       Detail</button>
+        //     </a>
+        //   </td>
+//         </tr>
+//     `;
+//     result.map(data=>{
+//         elementHtml.innerHTML += customer(data);
+//     });
+//     })
+ 
+  
+</script>
